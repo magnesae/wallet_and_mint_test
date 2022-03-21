@@ -24,8 +24,6 @@ const WalletConnect = (props: any) => {
   const [account, setAccount] = useState() as any;
   const [balance, setBalance] = useState() as any;
 
-  // const [walletAddress, setWalletAddress] = useState('');
-
   useEffect(() => {});
 
   const isWallet = () => {

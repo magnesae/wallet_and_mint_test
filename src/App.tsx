@@ -2,6 +2,7 @@
 // import ReactDOM from 'react-dom';
 
 import Header from './components/Header';
+import LazyMint from './components/LazyMint';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <header>
         <Header />
       </header>
+      <LazyMint />
     </div>
   );
 }
