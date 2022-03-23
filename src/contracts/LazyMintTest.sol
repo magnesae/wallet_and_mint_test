@@ -1,20 +1,23 @@
-// // SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
 // import "@openzeppelin/contracts@4.5.0/token/ERC721/ERC721.sol";
 // import "@openzeppelin/contracts@4.5.0/token/ERC721/extensions/ERC721Enumerable.sol";
-// import "@openzeppelin/contracts@4.5.0/token/ERC721/extensions/ERC721URIStorage.sol";
+// // import "@openzeppelin/contracts@4.5.0/token/ERC721/extensions/ERC721URIStorage.sol";
 // import "@openzeppelin/contracts@4.5.0/security/Pausable.sol";
 // import "@openzeppelin/contracts@4.5.0/access/Ownable.sol";
 // import "@openzeppelin/contracts@4.5.0/token/ERC721/extensions/ERC721Burnable.sol";
 // import "@openzeppelin/contracts@4.5.0/utils/cryptography/draft-EIP712.sol";
 // import "@openzeppelin/contracts@4.5.0/token/ERC721/extensions/draft-ERC721Votes.sol";
 // import "@openzeppelin/contracts@4.5.0/utils/Counters.sol";
+// import "./StringLib.sol";
 
-// contract LazyMintTest is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable, Ownable, ERC721Burnable, EIP712, ERC721Votes {
+// contract LazyMintTest is ERC721, ERC721Enumerable, /*ERC721URIStorage, */ Pausable, Ownable, ERC721Burnable, EIP712, ERC721Votes {
 //     using Counters for Counters.Counter;
 
 //     Counters.Counter private _tokenIdCounter;
+
+//     string public constant INVALID_TOKEN_ID = "Invalid Token ID";
 
 //     bool public saleIsActive = false;
 
@@ -23,13 +26,22 @@ pragma solidity ^0.8.4;
 
 //     uint256 public randomSeed;
 
-//     uint256 internal constant MAX_NFTS = 100;
+//     string private tokenUriBase;
+
+//     uint256 internal constant MAX_NFTS = 10;
 
 //     constructor() ERC721("LazyMintTest", "LMT") EIP712("LazyMintTest", "1") {}
+
+//     event TokenUriBaseSet(string tokenUriBase);
 
 //     modifier onlyOnSale() {
 //         require(saleIsActive, "Not in public sale period");
 //         _;
+//     }
+
+//     function setTokenUriBase(string calldata _tokenUriBase) external onlyOwner {
+//         tokenUriBase = _tokenUriBase;
+//         emit TokenUriBaseSet(_tokenUriBase);
 //     }
 
 //     function setMaxPurchasePerMint(uint256 _maxPurchasePerMint) external onlyOwner {
@@ -48,12 +60,12 @@ pragma solidity ^0.8.4;
 //         saleIsActive = !saleIsActive;
 //     }
 
-//     function safeMint(address to, string memory uri) public onlyOwner {
-//         uint256 tokenId = _tokenIdCounter.current();
-//         _tokenIdCounter.increment();
-//         _safeMint(to, tokenId);
-//         _setTokenURI(tokenId, uri);
-//     }
+//     // function safeMint(address to, string memory uri) public onlyOwner {
+//     //     uint256 tokenId = _tokenIdCounter.current();
+//     //     _tokenIdCounter.increment();
+//     //     _safeMint(to, tokenId);
+//     //     // _setTokenURI(tokenId, uri);
+//     // }
 
 //      function lazyMint(uint256 numberOfTokens) public payable onlyOnSale {
 //         require(numberOfTokens <= maxPurchasePerMint, "Tried to mint too many nfts");
@@ -92,6 +104,11 @@ pragma solidity ^0.8.4;
 //         }
 //     }
 
+//     function withdraw() public onlyOwner {
+//         uint256 balance = address(this).balance;
+//         payable(msg.sender).transfer(balance);
+//     }
+
 //     function _beforeTokenTransfer(address from, address to, uint256 tokenId)
 //         internal
 //         whenNotPaused
@@ -109,18 +126,25 @@ pragma solidity ^0.8.4;
 //         super._afterTokenTransfer(from, to, tokenId);
 //     }
 
-//     function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
+//     function _burn(uint256 tokenId) internal override(ERC721 /*, ERC721URIStorage */) {
 //         super._burn(tokenId);
 //     }
 
-//     function tokenURI(uint256 tokenId)
-//         public
-//         view
-//         override(ERC721, ERC721URIStorage)
-//         returns (string memory)
-//     {
-//         return super.tokenURI(tokenId);
+//     function tokenURI(uint256 _tokenId)
+//     public view override
+//     returns (string memory uri) {
+//         require(_exists(_tokenId), INVALID_TOKEN_ID);
+//         uri = bytes(tokenUriBase).length > 0 ? string(abi.encodePacked(tokenUriBase, StringLib.uint2str(_tokenId))) : "";
 //     }
+
+//     // function tokenURI(uint256 tokenId)
+//     //     public
+//     //     view
+//     //     override(ERC721, ERC721URIStorage)
+//     //     returns (string memory)
+//     // {
+//     //     return super.tokenURI(tokenId);
+//     // }
 
 //     function supportsInterface(bytes4 interfaceId)
 //         public
