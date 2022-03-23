@@ -1,0 +1,26 @@
+{
+  "name": "Your Collection #2",
+  "description": "Your Collection",
+  "external_url": "https://gateway.pinata.cloud/ipfs/QmWpxbRrYYmTEjTDq1GvtKgSyqM8PchaQNXbUMffXWd3JC/2.png",
+  "image": "2.png",
+  "attributes": [
+    {
+      "trait_type": "Color",
+      "value": "red"
+    },
+    {
+      "trait_type": "Figure",
+      "value": "circle"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "2.png",
+        "type": "image/png"
+      }
+    ],
+    "creators": []
+  },
+  "compiler": "https://the-nft-generator.com"
+}
