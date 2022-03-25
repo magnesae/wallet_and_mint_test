@@ -53,9 +53,14 @@ const WalletConnect = (props: any) => {
   return (
     <>
       {!isConnected ? (
-        <button onClick={wallet}>Wallet Connect</button>
+        <button
+          onClick={wallet}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Wallet Connect
+        </button>
       ) : (
-        <div className="row">
+        <div className="row-auto">
           <div>
             Account: {account.slice(0, 6)}...{account.slice(-4)}
           </div>

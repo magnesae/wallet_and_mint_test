@@ -6,11 +6,13 @@ import LazyMint from './components/LazyMint';
 
 function App() {
   return (
-    <div className="App">
+    <div className="text-center">
       <header>
         <Header />
       </header>
-      <LazyMint />
+      <header className="text-center">
+        <LazyMint />
+      </header>
     </div>
   );
 }

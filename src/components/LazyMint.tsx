@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import abi from './../contracts/LazyMintTestAbi.json';
+import { ClassNames } from '@emotion/react';
 
 const LazyMint = (props: any) => {
   const [address, setAddress] = useState() as any;
@@ -24,7 +25,23 @@ const LazyMint = (props: any) => {
 
   function MyForm() {
     return (
-      <form>
+      <form className="max-w-xs">
+        <div className="flex items-center border-b border-teal-500 py-2">
+          <label>
+            Enter the amount of NFTs you want to mint (max 3):
+            <input
+              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+              type="text"
+              placeholder="1"
+              onChange={(e) => setNumberOfTokens(e.target.value)}
+            ></input>
+          </label>
+        </div>
+      </form>
+    );
+
+    // {
+    /* <form>
         <label>
           Enter the amount of NFTs you want to mint (max 3):
           <input
@@ -33,8 +50,9 @@ const LazyMint = (props: any) => {
             onChange={(e) => setNumberOfTokens(e.target.value)}
           />
         </label>
-      </form>
-    );
+      </form> */
+    // }
+    // );
   }
 
   const getAddress = async () => {
@@ -67,15 +85,21 @@ const LazyMint = (props: any) => {
 
   return (
     <>
-      {' '}
-      <MyForm />
-      {!buttonClicked ? (
-        <button onClick={mint}>Lazy Mint</button>
-      ) : (
-        <div>
-          <div>Lazy Mint result: {result}</div>
-        </div>
-      )}
+      <div>
+        <MyForm />
+        {!buttonClicked ? (
+          <button
+            onClick={mint}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Lazy Mint
+          </button>
+        ) : (
+          <div>
+            <div>Lazy Mint result: {result}</div>
+          </div>
+        )}
+      </div>
     </>
   );
 };
