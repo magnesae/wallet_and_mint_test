@@ -134,7 +134,7 @@ pragma solidity ^0.8.4;
 //     public view override
 //     returns (string memory uri) {
 //         require(_exists(_tokenId), INVALID_TOKEN_ID);
-//         uri = bytes(tokenUriBase).length > 0 ? string(abi.encodePacked(tokenUriBase, StringLib.uint2str(_tokenId))) : "";
+//         uri = bytes(tokenUriBase).length > 0 ? string(abi.encodePacked(tokenUriBase, StringLib.uint2str(_tokenId), '.json')) : "";
 //     }
 
 //     // function tokenURI(uint256 tokenId)
