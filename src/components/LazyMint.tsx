@@ -11,7 +11,11 @@ const LazyMint = (props: any) => {
   const [result, setResult] = useState() as any;
   const [numberOfTokens, setNumberOfTokens] = useState('');
 
-  const contractAddress = '0x3CEd0a87aE8C42832ff5a0dE575Cc21bEFc2a8B6';
+  // Local at home
+  // const contractAddress = '0x3CEd0a87aE8C42832ff5a0dE575Cc21bEFc2a8B6';
+
+  // Local at work
+  const contractAddress = '0x2774303b6B263972C10F87687803285e32ef519F';
 
   const baseUri =
     'https://gateway.pinata.cloud/ipfs/QmUtA6ys1BMShyURECB1MzTXgKXvJVc7rudjWxPz6nBy6w/';
