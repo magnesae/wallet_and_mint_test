@@ -53,9 +53,10 @@ const LazyMint = (props: any) => {
             Enter the amount of NFTs you want to mint (max 3):
             <input
               className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-              type="text"
-              placeholder="1"
-              onChange={(e) => setNumberOfTokens(e.target.value)}
+              value={numberOfTokens}
+              onChange={(e) => {
+                setNumberOfTokens(e.target.value);
+              }}
             ></input>
           </label>
         </div>
@@ -121,7 +122,11 @@ const LazyMint = (props: any) => {
     const price = await getPrice();
     const payPrice = Number(price) * Number(numberOfTokens);
     const options = { value: ethers.utils.parseEther(payPrice.toString()) };
-    let result = await lazyMintContract.lazyMint(numberOfTokens, options);
+    // let result = await lazyMintContract.lazyMint(numberOfTokens, options);
+    let result = await whitelistMintContract.publicMint(
+      numberOfTokens,
+      options,
+    );
     console.log('Result for lazyMint: ', result);
     setResult(result.hash);
     setButtonClicked(true);
@@ -144,6 +149,7 @@ const LazyMint = (props: any) => {
           </div>
         )}
       </div>
+      <br />
       <div>
         {!preMintButtonClicked ? (
           <button
