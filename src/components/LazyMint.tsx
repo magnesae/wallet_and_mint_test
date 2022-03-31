@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import abi from './../contracts/LazyMintTestAbi.json';
+// import abi from './../contracts/LazyMintTestAbi.json';
 import whitelistAbi from './../contracts/WhiteListTestAbi.json';
 import addresses from './../whitelist/addresses.json';
 
 const LazyMint = (props: any) => {
   // const [address, setAddress] = useState() as any;
-  const [hash, setHash] = useState() as any;
+  // const [hash, setHash] = useState() as any;
   const [buttonClicked, setButtonClicked] = useState(false) as any;
   const [preMintButtonClicked, setPreMintButtonClicked] = useState(
     false,
   ) as any;
-  const [connection, setConnection] = useState(false) as any;
+  // const [connection, setConnection] = useState(false) as any;
   const [result, setResult] = useState() as any;
   const [preMintResult, setPreMintResult] = useState() as any;
   const [numberOfTokens, setNumberOfTokens] = useState('');
@@ -27,16 +27,16 @@ const LazyMint = (props: any) => {
   // Mac at work, WhiteListContract
   const contractAddress = '0x24047ad7E1BF8b32815411e3eDDA7EFA24Fd79E7';
 
-  const unrevealedUri =
-    'https://gateway.pinata.cloud/ipfs/QmRUW2fgQGq3c2DR3pzoYLPwkF3zD8i7HBzQvedkYB2Twm';
+  // const unrevealedUri =
+  //   'https://gateway.pinata.cloud/ipfs/QmRUW2fgQGq3c2DR3pzoYLPwkF3zD8i7HBzQvedkYB2Twm';
 
-  const baseUri =
-    'https://gateway.pinata.cloud/ipfs/QmUtA6ys1BMShyURECB1MzTXgKXvJVc7rudjWxPz6nBy6w/';
+  // const baseUri =
+  //   'https://gateway.pinata.cloud/ipfs/QmUtA6ys1BMShyURECB1MzTXgKXvJVc7rudjWxPz6nBy6w/';
 
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
 
-  const lazyMintContract = new ethers.Contract(contractAddress, abi, signer);
+  // const lazyMintContract = new ethers.Contract(contractAddress, abi, signer);
   const whitelistMintContract = new ethers.Contract(
     contractAddress,
     whitelistAbi,
@@ -97,13 +97,13 @@ const LazyMint = (props: any) => {
     return ethers.utils.formatEther(price);
   };
 
-  const send = async () => {
-    const tx = await signer.sendTransaction({
-      to: '0x832b6C35e7B8d0D6f912e5C5C6549cd0A48D8e92',
-      value: ethers.utils.parseEther('1.0'),
-    });
-    return tx;
-  };
+  // const send = async () => {
+  //   const tx = await signer.sendTransaction({
+  //     to: '0x832b6C35e7B8d0D6f912e5C5C6549cd0A48D8e92',
+  //     value: ethers.utils.parseEther('1.0'),
+  //   });
+  //   return tx;
+  // };
 
   const preMint = async () => {
     let price = await getPrice();
@@ -160,7 +160,7 @@ const LazyMint = (props: any) => {
           </button>
         ) : (
           <div>
-            <div>Pre Mint result: {result}</div>
+            <div>Pre Mint result: {preMintResult}</div>
           </div>
         )}
       </div>
