@@ -10,7 +10,14 @@ import { Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <div className="text-center">
-      <header>
+      <header
+        className="text-right"
+        style={{
+          paddingTop: '0.5rem',
+          paddingBottom: '0.5rem',
+          paddingRight: '1rem',
+        }}
+      >
         <Header />
       </header>
       <nav
