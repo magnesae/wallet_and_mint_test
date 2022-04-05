@@ -3,6 +3,9 @@
 
 import Header from './components/Header';
 import LazyMint from './components/LazyMint';
+import Test from './components/Test';
+import { Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
@@ -10,9 +13,21 @@ function App() {
       <header>
         <Header />
       </header>
-      <header className="text-center">
-        <LazyMint />
-      </header>
+      <nav
+        style={{
+          borderTop: 'solid 1px',
+          paddingTop: '1rem',
+          borderBottom: 'solid 1px',
+          paddingBottom: '1rem',
+        }}
+      >
+        <Link to="/">Home</Link> | <Link to="/mint">Mint</Link> |{' '}
+        <Link to="/test">Test</Link>
+      </nav>
+      <Routes>
+        <Route path="mint" element={<LazyMint />} />
+        <Route path="test" element={<Test />} />
+      </Routes>
     </div>
   );
 }
