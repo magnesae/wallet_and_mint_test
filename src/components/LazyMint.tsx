@@ -3,8 +3,19 @@ import { ethers } from 'ethers';
 // import abi from './../contracts/LazyMintTestAbi.json';
 import whitelistAbi from './../contracts/WhiteListTestAbi.json';
 import addresses from './../whitelist/addresses.json';
+import { useForm } from 'react-hook-form';
 
 const LazyMint = (props: any) => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data: any) => {
+    setNumberOfTokens(data.number);
+    console.log('Number of tokens: ', numberOfTokens);
+  };
   // const [address, setAddress] = useState() as any;
   // const [hash, setHash] = useState() as any;
   const [buttonClicked, setButtonClicked] = useState(false) as any;
@@ -135,7 +146,23 @@ const LazyMint = (props: any) => {
   return (
     <>
       <div>
-        <MyForm />
+        {/* <MyForm /> */}
+        <br />
+        <div>
+          <form onChange={handleSubmit(onSubmit)}>
+            <div>
+              <p>Enter the number of NFTs you want to mint (max 3):</p>
+              <input
+                style={{
+                  borderColor: 'black',
+                  borderWidth: 1,
+                }}
+                {...register('number')}
+              />
+            </div>
+            <br />
+          </form>
+        </div>
         {!buttonClicked ? (
           <button
             onClick={mint}
