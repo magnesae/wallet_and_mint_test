@@ -3,9 +3,10 @@
 
 import Header from './components/Header';
 import LazyMint from './components/LazyMint';
-import Test from './components/Test';
+import Faucet from './components/Faucet';
 import { Link } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
+import { Divider } from '@chakra-ui/react';
 
 function App() {
   return (
@@ -29,11 +30,12 @@ function App() {
         }}
       >
         <Link to="/">Home</Link> | <Link to="/mint">Mint</Link> |{' '}
-        <Link to="/test">Test</Link>
+        <Link to="/faucet">Faucet</Link>
       </nav>
       <Routes>
+        <Route path="/" element={<div>Welcome to BSL Network!</div>} />
         <Route path="mint" element={<LazyMint />} />
-        <Route path="test" element={<Test />} />
+        <Route path="faucet" element={<Faucet />} />
       </Routes>
     </div>
   );

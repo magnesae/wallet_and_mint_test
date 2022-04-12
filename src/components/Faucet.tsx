@@ -1,12 +1,24 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
+import { useForm } from 'react-hook-form';
 
-const Test = (props: any) => {
+const Faucet = (props: any) => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data: any) => {
+    setAddressTo(data.addressTo);
+    setAmount(data.amount);
+  };
+
   const [block, setBlock] = useState() as any;
   const [balance, setBalance] = useState() as any;
   const [hash, setHash] = useState() as any;
-  //   const [addressTo, setAddressTo] = useState('') as any;
-  //   const [amount, setAmount] = useState() as any;
+  const [addressTo, setAddressTo] = useState('') as any;
+  const [amount, setAmount] = useState() as any;
   const [buttonClicked, setButtonClicked] = useState(false);
 
   useEffect(() => {});
@@ -25,8 +37,8 @@ const Test = (props: any) => {
 
   const nodeSigner = nodeProvider.getSigner();
 
-  let addressTo = '0x3BD56B724E9FcE95da634D314444092Fdba79dc7';
-  let amount = '0.1';
+  // let addressTo = '0x3BD56B724E9FcE95da634D314444092Fdba79dc7';
+  // let amount = '0.1';
 
   const getBlocknumber = async () => {
     let blockNumber = await provider.getBlockNumber();
@@ -73,15 +85,47 @@ const Test = (props: any) => {
     setHash(res.hash);
   };
 
+  // const handleSubmitBtn = (data) => {
+  //   setAddressTo(data.addressTo);
+  //   setAmount(data.amount);
+  // };
+
   return (
     <>
+      <br />
+      <div>
+        <form onChange={handleSubmit(onSubmit)}>
+          <div>
+            <p>Address to send to:</p>
+            <input
+              style={{
+                borderColor: 'black',
+                borderWidth: 1,
+              }}
+              {...register('addressTo')}
+            />
+          </div>
+          <br />
+          <div>
+            <p>Amount in ETH:</p>
+            <input
+              style={{
+                borderColor: 'black',
+                borderWidth: 1,
+              }}
+              {...register('amount')}
+            />
+          </div>
+        </form>
+      </div>
+      <br />
       <div>
         {!buttonClicked ? (
           <button
             onClick={sendTransaction}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
-            Send transaction
+            Get ETH
           </button>
         ) : (
           <div>
@@ -93,4 +137,4 @@ const Test = (props: any) => {
   );
 };
 
-export default Test;
+export default Faucet;
