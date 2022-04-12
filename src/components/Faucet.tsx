@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { useForm } from 'react-hook-form';
+// import 'dotenv/config';
 
 const Faucet = (props: any) => {
   const {
@@ -26,19 +27,14 @@ const Faucet = (props: any) => {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
 
-  const privateKey =
-    'b04753d542cb3f3894e0a62199634318b1210983c728adba99b1f8117507d85f';
+  const privateKey = process.env.REACT_APP_NODE_ONE_PK as any;
+  const nodeAddress = process.env.REACT_APP_NODE_ONE_ADDR as any;
 
-  const nodeProvider = new ethers.providers.JsonRpcProvider(
-    'http://3.39.16.90:8545',
-  );
+  const nodeProvider = new ethers.providers.JsonRpcProvider(nodeAddress);
 
   const nodeWallet = new ethers.Wallet(privateKey, nodeProvider);
 
   const nodeSigner = nodeProvider.getSigner();
-
-  // let addressTo = '0x3BD56B724E9FcE95da634D314444092Fdba79dc7';
-  // let amount = '0.1';
 
   const getBlocknumber = async () => {
     let blockNumber = await provider.getBlockNumber();
@@ -59,6 +55,7 @@ const Faucet = (props: any) => {
     let nonce = await nodeProvider.getTransactionCount(nodeWallet.address);
     let feeData = await nodeProvider.getFeeData();
     console.log('Fee Data:', feeData);
+    const amount = '1';
 
     const tx = {
       type: 2,
@@ -106,7 +103,7 @@ const Faucet = (props: any) => {
             />
           </div>
           <br />
-          <div>
+          {/* <div>
             <p>Amount in ETH:</p>
             <input
               style={{
@@ -115,7 +112,7 @@ const Faucet = (props: any) => {
               }}
               {...register('amount')}
             />
-          </div>
+          </div> */}
         </form>
       </div>
       <br />
