@@ -21,6 +21,8 @@ const Faucet = (props: any) => {
   const [addressTo, setAddressTo] = useState('') as any;
   const [amount, setAmount] = useState() as any;
   const [buttonClicked, setButtonClicked] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errormsg, setErrormsg] = useState() as any;
 
   useEffect(() => {});
 
@@ -69,13 +71,33 @@ const Faucet = (props: any) => {
     };
     console.log('Transaction Data:', tx);
 
-    const signedTx = await nodeWallet.signTransaction(tx);
+    let signedTx: any;
+
+    try {
+      signedTx = await nodeWallet.signTransaction(tx);
+    } catch (e: any) {
+      if (e) {
+        setErrormsg(e.toString());
+        setIsError(true);
+        return e;
+      }
+    }
+
     console.log('Signed Transaction:', signedTx);
 
     const txHash = ethers.utils.keccak256(signedTx);
     console.log('Precomputed txHash:', txHash);
 
-    let res = await nodeProvider.sendTransaction(signedTx);
+    let res: any;
+    try {
+      res = await nodeProvider.sendTransaction(signedTx);
+    } catch (e: any) {
+      if (e) {
+        setErrormsg(e.toString());
+        setIsError(true);
+        return e;
+      }
+    }
     console.log('Receipt:', res);
 
     setButtonClicked(true);
@@ -122,13 +144,14 @@ const Faucet = (props: any) => {
             onClick={sendTransaction}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
-            Get ETH
+            Get BSL
           </button>
         ) : (
           <div>
             <div>Transaction hash: {hash}</div>
           </div>
         )}
+        <div>{errormsg}</div>
       </div>
     </>
   );
