@@ -1,3 +1,4 @@
+import classes from '../styles/LazyMint.module.scss';
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 // import abi from './../contracts/LazyMintTestAbi.json';
@@ -9,8 +10,8 @@ const LazyMint = (props: any) => {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    // watch,
+    // formState: { errors },
   } = useForm();
   const onSubmit = (data: any) => {
     setNumberOfTokens(data.number);
@@ -56,24 +57,24 @@ const LazyMint = (props: any) => {
 
   useEffect(() => {});
 
-  function MyForm() {
-    return (
-      <form className="max-w-xs">
-        <div className="flex items-center border-b border-teal-500 py-2">
-          <label>
-            Enter the amount of NFTs you want to mint (max 3):
-            <input
-              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-              value={numberOfTokens}
-              onChange={(e) => {
-                setNumberOfTokens(e.target.value);
-              }}
-            ></input>
-          </label>
-        </div>
-      </form>
-    );
-  }
+  // function MyForm() {
+  //   return (
+  //     <form className="max-w-xs">
+  //       <div className="flex items-center border-b border-teal-500 py-2">
+  //         <label>
+  //           Enter the amount of NFTs you want to mint (max 3):
+  //           <input
+  //             className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+  //             value={numberOfTokens}
+  //             onChange={(e) => {
+  //               setNumberOfTokens(e.target.value);
+  //             }}
+  //           ></input>
+  //         </label>
+  //       </div>
+  //     </form>
+  //   );
+  // }
 
   const signAddress = async () => {
     let address = await getAddress();
@@ -152,22 +153,13 @@ const LazyMint = (props: any) => {
           <form onChange={handleSubmit(onSubmit)}>
             <div>
               <p>Enter the number of NFTs you want to mint (max 3):</p>
-              <input
-                style={{
-                  borderColor: 'black',
-                  borderWidth: 1,
-                }}
-                {...register('number')}
-              />
+              <input className={classes.inputBox} {...register('number')} />
             </div>
             <br />
           </form>
         </div>
         {!buttonClicked ? (
-          <button
-            onClick={mint}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
+          <button onClick={mint} className={classes.btn}>
             Lazy Mint
           </button>
         ) : (
@@ -179,10 +171,7 @@ const LazyMint = (props: any) => {
       <br />
       <div>
         {!preMintButtonClicked ? (
-          <button
-            onClick={preMint}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
+          <button onClick={preMint} className={classes.btn}>
             Presale Mint
           </button>
         ) : (

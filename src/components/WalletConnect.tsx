@@ -1,4 +1,5 @@
 // import styled from 'styled-components';
+import classes from '../styles/WalletConnect.module.scss';
 import { useState, useEffect } from 'react';
 
 // import { getBalance } from '../utils/GetInfo';
@@ -53,10 +54,7 @@ const WalletConnect = (props: any) => {
   return (
     <>
       {!isConnected ? (
-        <button
-          onClick={wallet}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
+        <button onClick={wallet} className={classes.btn}>
           Connect Wallet
         </button>
       ) : (

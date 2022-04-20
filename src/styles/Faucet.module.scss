@@ -1,0 +1,21 @@
+.btn {
+  background-color: rgb(59 130 246);
+  color: white;
+  font-weight: 700;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 0.25rem;
+}
+
+.btn:hover {
+  background-color: rgb(29 78 216);
+}
+
+.inputBox {
+  border: solid black;
+  border-width: 1px;
+  width: 26rem;
+  text-align: center;
+}

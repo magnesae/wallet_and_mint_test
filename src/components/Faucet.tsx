@@ -1,3 +1,4 @@
+import classes from '../styles/Faucet.module.scss';
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { useForm } from 'react-hook-form';
@@ -10,16 +11,17 @@ const Faucet = (props: any) => {
     watch,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data: any) => {
     setAddressTo(data.addressTo);
-    setAmount(data.amount);
+    // setAmount(data.amount);
   };
 
   const [block, setBlock] = useState() as any;
   const [balance, setBalance] = useState() as any;
   const [hash, setHash] = useState() as any;
   const [addressTo, setAddressTo] = useState('') as any;
-  const [amount, setAmount] = useState() as any;
+  // const [amount, setAmount] = useState() as any;
   const [buttonClicked, setButtonClicked] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errormsg, setErrormsg] = useState() as any;
@@ -116,22 +118,11 @@ const Faucet = (props: any) => {
         <form onChange={handleSubmit(onSubmit)}>
           <div>
             <p>Address to send to:</p>
-            <input
-              style={{
-                borderColor: 'black',
-                borderWidth: 1,
-              }}
-              {...register('addressTo')}
-            />
+            <input className={classes.inputBox} {...register('addressTo')} />
           </div>
-          <br />
           {/* <div>
             <p>Amount in ETH:</p>
-            <input
-              style={{
-                borderColor: 'black',
-                borderWidth: 1,
-              }}
+            <input className={classes.inputBox}
               {...register('amount')}
             />
           </div> */}
@@ -140,10 +131,7 @@ const Faucet = (props: any) => {
       <br />
       <div>
         {!buttonClicked ? (
-          <button
-            onClick={sendTransaction}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
+          <button onClick={sendTransaction} className={classes.btn}>
             Get BSL
           </button>
         ) : (
