@@ -58,12 +58,12 @@ const WalletConnect = (props: any) => {
           Connect Wallet
         </button>
       ) : (
-        <div className="row-auto">
+        <div>
           <div>
             Account: {account.slice(0, 6)}...{account.slice(-4)}
           </div>
           <div>
-            Balance: {(parseInt(balance, 16) / Math.pow(10, 18)).toFixed(3)} ETH
+            Balance: {(parseInt(balance, 16) / Math.pow(10, 18)).toFixed(3)} BSL
           </div>
         </div>
       )}

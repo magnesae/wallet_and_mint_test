@@ -1,6 +1,40 @@
 .nav {
   border-top: solid 1px;
-  padding-top: 1rem;
+  padding-top: 0.5rem;
   border-bottom: solid 1px;
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // height: 80px;
+  height: 4rem;
+  width: 100%;
+  text-align: center;
+}
+
+.li {
+  margin-left: 1%;
+  margin-right: 1%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: larger;
+}
+
+.li:hover {
+  text-decoration: underline;
+}
+
+.header {
+  position: absolute;
+  left: 90%;
+  text-align: left;
+  padding-top: 0.5rem;
+  // padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  // padding-bottom: 1rem;
+  padding-right: 1rem;
 }
